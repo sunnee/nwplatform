@@ -84,7 +84,7 @@ EXTERN_C struct os_version_t os_verion_ios()
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-EXTERN_C struct OS_VERSION_VALUE os_verion_osx()
+EXTERN_C struct os_version_t os_verion_osx()
 {
     
     //char str[256];

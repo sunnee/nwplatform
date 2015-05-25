@@ -120,10 +120,15 @@
 #elif (NW_SYSTEM_BIG_ENDIAN)
     #define NW_SYSTEM_LITTLE_ENDIAN 0
 #elif (!defined(NW_SYSTEM_LITTLE_ENDIAN) && !defined(NW_SYSTEM_BIG_ENDIAN))
-    #define NW_ENDIAN_TEST (*(unsigned char*)&(uint16_t){1})
-    #define NW_SYSTEM_BIG_ENDIAN    (NW_ENDIAN_TEST == 0)
-    #define NW_SYSTEM_LITTLE_ENDIAN (NW_ENDIAN_TEST != 0)
+
+    #define NW_ENDIAN_TEST          (*((const uint32_t*)((const uint8_t*)"\x01\x02\x03\x04")))
+
+    #define NW_SYSTEM_BIG_ENDIAN    (NW_ENDIAN_TEST == (uint32_t)0x01020304)
+    #define NW_SYSTEM_LITTLE_ENDIAN (NW_ENDIAN_TEST == (uint32_t)0x04030201)
 #endif
+
+
+
 
 #if (NW_SYSTEM_64BIT)
     #define NW_SYSTEM_32BIT 0
