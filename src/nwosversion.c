@@ -60,6 +60,17 @@ EXTERN_C struct os_version_t os_verion_ios()
     
     const char* systemVersionStr = CFStringGetCStringPtr(systemVersion, kCFStringEncodingASCII);
     
+    if (systemVersionStr == NULL)
+    {
+        systemVersionStr = CFStringGetCStringPtr(systemVersion, kCFStringEncodingUTF8);
+        
+        if (systemVersionStr == NULL)
+        {
+            SEL UTF8StringSel = sel_registerName("UTF8String");
+            systemVersionStr = (const char*)objc_msgSend((id)systemVersion, UTF8StringSel);
+        }
+    }
+    
     int major = 0, minor = 0, patch = 0;
     struct os_version_t result = {0};
     
