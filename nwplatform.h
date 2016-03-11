@@ -139,10 +139,14 @@
     #define NW_SYSTEM_32BIT (sizeof(void*) <= 4)
 #endif
 
-#ifdef NW_COMPILER_MSVC
-	#define THREAD_LOCAL    __declspec(thread)
+#if __cplusplus
+# define THREAD_LOCAL _Thread_local
 #else
-	#define THREAD_LOCAL    __thread
+# if (NW_SYSTEM_WINDOWS || NW_COMPILER_MSVC)
+#  define THREAD_LOCAL __declspec(thread)
+# else
+#  define THREAD_LOCAL __thread
+# endif
 #endif
 
 #include "nwtypes.h"
