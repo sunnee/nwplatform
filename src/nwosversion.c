@@ -20,7 +20,7 @@
 
 EXTERN_C struct os_version_t _os_verion_internal();
 
-EXTERN_C struct os_version_t os_verion()
+EXTERN_C struct os_version_t os_version()
 {
     //static struct OS_VERSION_COMPONENTS components = {1,2,3};
     static struct os_version_t os_version = OS_VERSION_MAKE(0,0,0);

@@ -43,6 +43,6 @@ NW_PACKET_END_DEF
 #define OS_VERSION_MAKE(MAJOR,MINOR,PATCH)  (struct os_version_t){((MAJOR)<<0)&0xFF000000 | ((MINOR)<< 8)&0x00FF0000 | ((PATCH)<<16)&0x0000FFFF}
 #endif
 
-EXTERN_C struct os_version_t os_verion();
+EXTERN_C struct os_version_t os_version();
 
 #endif //__NW_OS_VERSION__
