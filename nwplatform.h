@@ -120,10 +120,15 @@
 #elif (NW_SYSTEM_BIG_ENDIAN)
     #define NW_SYSTEM_LITTLE_ENDIAN 0
 #elif (!defined(NW_SYSTEM_LITTLE_ENDIAN) && !defined(NW_SYSTEM_BIG_ENDIAN))
-    #define NW_ENDIAN_TEST (*(unsigned char*)&(uint16_t){1})
-    #define NW_SYSTEM_BIG_ENDIAN    (NW_ENDIAN_TEST == 0)
-    #define NW_SYSTEM_LITTLE_ENDIAN (NW_ENDIAN_TEST != 0)
+
+    #define NW_ENDIAN_TEST          (*((const uint32_t*)((const uint8_t*)"\x01\x02\x03\x04")))
+
+    #define NW_SYSTEM_BIG_ENDIAN    (NW_ENDIAN_TEST == (uint32_t)0x01020304)
+    #define NW_SYSTEM_LITTLE_ENDIAN (NW_ENDIAN_TEST == (uint32_t)0x04030201)
 #endif
+
+
+
 
 #if (NW_SYSTEM_64BIT)
     #define NW_SYSTEM_32BIT 0
@@ -134,10 +139,14 @@
     #define NW_SYSTEM_32BIT (sizeof(void*) <= 4)
 #endif
 
-#ifdef NW_COMPILER_MSVC
-	#define THREAD_LOCAL    __declspec(thread)
+#if __cplusplus
+# define THREAD_LOCAL _Thread_local
 #else
-	#define THREAD_LOCAL    __thread
+# if (NW_SYSTEM_WINDOWS || NW_COMPILER_MSVC)
+#  define THREAD_LOCAL __declspec(thread)
+# else
+#  define THREAD_LOCAL __thread
+# endif
 #endif
 
 #include "nwtypes.h"
@@ -164,5 +173,12 @@
 #include "nwstdheaders.h"
 #include "nwmacro.h"
 #include "nwosversion.h"
+
+#define NW_PLATFORM_MAKE_VERSION(MAJOR,MINOR,PATCH)       ((MAJOR*1000*1000) + (MINOR*1000) + PATCH)
+
+#define NW_PLATFORM_VERSION_1_0_1      NW_PLATFORM_MAKE_VERSION(1,0,1)
+#define NW_PLATFORM_VERSION_1_0_2      NW_PLATFORM_MAKE_VERSION(1,0,2)
+
+#define NW_PLATFORM_CURRENT_VERSION    NW_PLATFORM_VERSION_1_0_2
 
 #endif /* __NW_PLATFORM__ */
