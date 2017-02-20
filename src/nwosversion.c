@@ -9,16 +9,16 @@
 #include "nwplatform.h"
 
 #if NW_SYSTEM_IOS
-#define _os_verion_internal os_verion_ios
+#define _os_version_internal os_version_ios
 #elif NW_SYSTEM_OSX
-#define _os_verion_internal os_verion_osx
+#define _os_version_internal os_version_osx
 #elif NW_SYSTEM_WINDOWS
-#define _os_verion_internal os_verion_windows
+#define _os_version_internal os_version_windows
 #else
-#define _os_verion_internal os_verion_empty
+#define _os_version_internal os_version_empty
 #endif
 
-EXTERN_C struct os_version_t _os_verion_internal();
+EXTERN_C struct os_version_t _os_version_internal();
 
 EXTERN_C struct os_version_t os_version()
 {
@@ -27,7 +27,7 @@ EXTERN_C struct os_version_t os_version()
 
     if (os_version.value == 0)
     {
-        os_version = _os_verion_internal();
+        os_version = _os_version_internal();
     }
     
     return os_version;
@@ -45,7 +45,7 @@ EXTERN_C struct os_version_t os_version()
 #define GET_CLASS_METHOD_IMP(CLASS,SEL)    method_getImplementation(class_getClassMethod(CLASS,    SEL))
 #define GET_INSTANCE_METHOD_IMP(CLASS,SEL) method_getImplementation(class_getInstanceMethod(CLASS, SEL))
 
-EXTERN_C struct os_version_t os_verion_ios()
+EXTERN_C struct os_version_t os_version_ios()
 {
     Class uiDevice       = objc_getClass("UIDevice");
     SEL currentDeviceSel = sel_registerName("currentDevice");
@@ -95,7 +95,7 @@ EXTERN_C struct os_version_t os_verion_ios()
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-EXTERN_C struct os_version_t os_verion_osx()
+EXTERN_C struct os_version_t os_version_osx()
 {
     
     //char str[256];
@@ -134,7 +134,7 @@ EXTERN_C struct os_version_t os_verion_osx()
 //-------------------- WINDOWS ----------------------
 #include <winnt.h>
 
-EXTERN_C struct OS_VERSION_VALUE os_verion_windows()
+EXTERN_C struct OS_VERSION_VALUE os_version_windows()
 {
     struct OSVERSIONINFOEX os_version_info;
     
@@ -199,7 +199,7 @@ EXTERN_C struct OS_VERSION_VALUE os_verion_windows()
 
 #else
 //-------------------- EMPTY ----------------------
-EXTERN_C struct OS_VERSION_VALUE os_verion_empty()
+EXTERN_C struct OS_VERSION_VALUE os_version_empty()
 {
     struct os_version_t result = {0};
     return result;
