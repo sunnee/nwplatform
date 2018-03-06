@@ -50,11 +50,6 @@
 
 #define ARRAY_LENGTH(x)            (sizeof(x) / sizeof((x)[0]))
 
-#define VALUE_IN_ARRAY(value, type, array)  arritem(array, sizeof(array), &value, sizeof(value))
-
-#define VALUE_IN_LIST(value, type, ...)     (VALUE_IN_ARRAY((value),type,ARRAY_WITH_TYPE(type,__VA_ARGS__)) != NULL)
-#define VALUE_NOT_IN_LIST(value, type, ...) (VALUE_IN_ARRAY((value),type,ARRAY_WITH_TYPE(type,__VA_ARGS__)) == NULL)
-
 #ifndef MAX
     #define MAX(_V1_, _V2_) ((_V1_)>(_V2_)?(_V1_):(_V2_))
 #endif
@@ -63,22 +58,6 @@
     #define MIN(_V1_, _V2_) ((_V1_)>(_V2_)?(_V2_):(_V1_))
 #endif
 
-
-#define FLOAT_COMPARE(value1, value2) comparef(value1, value2)
-#define FLOAT_COMPARE_ABSOLUTE(value1, value2, precision) ( ((value1) >= (value2)-precision) && ((value1) <= (value2)+precision) )
-#define FLOAT_COMPARE_RELATIVE(value1, value2, precision) FLOAT_COMPARE_ABSOLUTE(value1, value2, (value2)*precision)
-
-#define VALUE_IN_RANGE(value, min, max) (((value) >= (min)) && ((value) <= (max)))
-#define VALUE_CLIP_TO_RANGE(value, min, max) MAX((min), MIN((max), (value)))
-
-#define VALUE_INC_IN_RANGE(value, min, max) ((value)>=(max))?(max):((value)+1)
-#define VALUE_DEC_IN_RANGE(value, min, max) ((value)<=(min))?(min):((value)-1)
-
-#define VALUE_LOOP_IN_RANGE(value, min, max) (value)>(max)?(value)-(max):((value)<(min)?(value)+(max):(value))
-
-
-#define VALUE_IN_INTERVAL(low, val, high)	   ( ((val) >  (low)) && ((val) <  (high)) )
-#define VALUE_IN_INTERVAL_INCL(low, val, high) ( ((val) >= (low)) && ((val) <= (high)) )
 
 #define ZERO_MEM(mem, size) memset((mem), 0, (size))
 #define ZERO_STRUCT(structure) memset(&structure, 0, sizeof(structure))
@@ -89,9 +68,7 @@
 #endif
 
 #define FREE_BLOCK_AND_ZERO(pointer)   {free(pointer); (pointer) = 0;}
-
-
-#define ELEMENTS_IN_ARRAY(arr)   ((int) (sizeof (arr) / sizeof ((arr)[0])))
+#define ELEMENTS_IN_ARRAY(arr)         ((int) (sizeof (arr) / sizeof ((arr)[0])))
 
 
 #endif /* __NW_MACRO__ */
