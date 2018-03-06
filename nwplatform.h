@@ -1,7 +1,7 @@
 //
 //  NW PLATFORM
 //
-//  Copyright (c) 2006-2014 Alexandr Kavalchuk (nWaves).
+//  Copyright (c) 2006-2017 Alexandr Kavalchuk (nWaves).
 //  All rights reserved.
 //
 
@@ -178,7 +178,8 @@
 
 #define NW_PLATFORM_VERSION_1_0_1      NW_PLATFORM_MAKE_VERSION(1,0,1)
 #define NW_PLATFORM_VERSION_1_0_2      NW_PLATFORM_MAKE_VERSION(1,0,2)
+#define NW_PLATFORM_VERSION_1_0_3      NW_PLATFORM_MAKE_VERSION(1,0,3)
 
-#define NW_PLATFORM_CURRENT_VERSION    NW_PLATFORM_VERSION_1_0_2
+#define NW_PLATFORM_CURRENT_VERSION    NW_PLATFORM_VERSION_1_0_3
 
 #endif /* __NW_PLATFORM__ */
