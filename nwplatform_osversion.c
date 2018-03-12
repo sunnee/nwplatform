@@ -1,12 +1,18 @@
 //
-//  NW OS VERSION
+//  NW PLATFORM
 //
-//  Created by Alexandr Kavalchuk on 16.03.15.
-//  Copyright (c) 2006-2015 Alexandr Kavalchuk (nWaves).
+//  Copyright (c) 2006-2018 Alexandr Kavalchuk (nWaves).
 //  All rights reserved.
 //
 
 #include "nwplatform.h"
+
+#ifndef __NW_PLATFORM_IMPLEMENTATION
+#error Use only "nwplatform.h" and "nwplatform.c". Don't compile/include other files directly!
+#endif
+
+#ifndef __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__
+#define __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__
 
 #if NW_SYSTEM_IOS
 #define _os_version_internal os_version_ios
@@ -205,3 +211,5 @@ EXTERN_C struct OS_VERSION_VALUE os_version_empty()
     return result;
 }
 #endif
+
+#endif //#ifndef __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__

@@ -1,13 +1,12 @@
 //
-//  nwos_version.h
-//  iTube
+//  NW PLATFORM
 //
-//  Created by Alexandr Kavalchuk on 18.03.15.
-//  Copyright (c) 2015 Alpari Group Ltd... All rights reserved.
+//  Copyright (c) 2006-2018 Alexandr Kavalchuk (nWaves).
+//  All rights reserved.
 //
 
-#ifndef __NW_OS_VERSION__
-#define __NW_OS_VERSION__
+#ifndef __NW_PLATFORM_OS_VERSION__
+#define __NW_PLATFORM_OS_VERSION__
 
 #if NW_SYSTEM_LITTLE_ENDIAN
 NW_PACKET_START_DEF struct NW_PACKET_ATTR os_version_parts_t

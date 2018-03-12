@@ -1,12 +1,12 @@
 //
-//  NW MACRO
+//  NW PLATFORM
 //
-//  Copyright (c) 2006-2014 Alexandr Kavalchuk (nWaves).
+//  Copyright (c) 2006-2018 Alexandr Kavalchuk (nWaves).
 //  All rights reserved.
 //
 
-#ifndef __NW_MACRO__
-#define __NW_MACRO__
+#ifndef __NW_PLATFORM_MACRO__
+#define __NW_PLATFORM_MACRO__
 
 #ifndef NULL
     #define NULL 0
@@ -71,4 +71,4 @@
 #define ELEMENTS_IN_ARRAY(arr)         ((int) (sizeof (arr) / sizeof ((arr)[0])))
 
 
-#endif /* __NW_MACRO__ */
+#endif /* __NW_PLATFORM_MACRO__ */

@@ -1,12 +1,12 @@
 //
-//  NW STD HEADERS
+//  NW PLATFORM
 //
-//  Copyright (c) 2006-2014 Alexandr Kavalchuk (nWaves).
+//  Copyright (c) 2006-2018 Alexandr Kavalchuk (nWaves).
 //  All rights reserved.
 //
 
-#ifndef __NW_STD_HEADERS__
-#define __NW_STD_HEADERS__
+#ifndef __NW_PLATFORM_HEADERS__
+#define __NW_PLATFORM_HEADERS__
 
 #if NW_COMPILER_MSVC
 	//Map standart library to secure library
@@ -64,4 +64,4 @@
 #endif
 
 
-#endif /* #ifndef __NW_STD_HEADERS__ */
+#endif /* #ifndef __NW_PLATFORM_HEADERS__ */

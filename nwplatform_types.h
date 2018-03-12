@@ -1,12 +1,12 @@
 //
-//  NW TYPES
+//  NW PLATFORM
 //
-//  Copyright (c) 2006-2014 Alexandr Kavalchuk (nWaves).
+//  Copyright (c) 2006-2018 Alexandr Kavalchuk (nWaves).
 //  All rights reserved.
 //
 
-#ifndef __NW_TYPES__
-#define __NW_TYPES__
+#ifndef __NW_PLATFORM_TYPES__
+#define __NW_PLATFORM_TYPES__
 
 #ifdef NW_COMPILER_MSVC
     #if (_MSC_VER < 1300)
@@ -113,4 +113,4 @@
 #endif
 
 
-#endif /* __NW_TYPES__ */
+#endif /* __NW_PLATFORM_TYPES__ */
