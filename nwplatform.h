@@ -1,8 +1,23 @@
 //
 //  NW PLATFORM
 //
-//  Copyright (c) 2006-2017 Alexandr Kavalchuk (nWaves).
+//  Copyright (c) 2006-2018 Alexandr Kavalchuk (nWaves).
 //  All rights reserved.
+//
+//  This software is provided 'as-is', without any express or implied
+//  warranty. In no event will the authors be held liable for any damages
+//  arising from the use of this software. Permission is granted to anyone to
+//  use this software for any purpose, including commercial applications, and to
+//  alter it and redistribute it freely, subject to the following restrictions:
+//
+//  1. The origin of this software must not be misrepresented; you must not
+//     claim that you wrote the original software. If you use this software
+//     in a product, an acknowledgment in the product documentation would be
+//     appreciated but is not required.
+//  2. Altered source versions must be plainly marked as such, and must not be
+//     misrepresented as being the original software.
+//  3. This notice may not be removed or altered from any source
+//     distribution.
 //
 
 #ifndef __NW_PLATFORM__
@@ -149,7 +164,7 @@
 # endif
 #endif
 
-#include "nwtypes.h"
+#include "nwplatform_types.h"
 
 #if (NW_COMPILER_CLANG || NW_COMPILER_GCC)
 
@@ -170,16 +185,17 @@
 #define NW_PACKET_START NW_PACKET_START_DEF typedef struct NW_PACKET_ATTR
 #define NW_PACKET_END(_NW_PACKET_NAME_) _NW_PACKET_NAME_ NW_PACKET_END_DEF
 
-#include "nwstdheaders.h"
-#include "nwmacro.h"
-#include "nwosversion.h"
+#include "nwplatform_headers.h"
+#include "nwplatform_macro.h"
+#include "nwplatform_osversion.h"
 
 #define NW_PLATFORM_MAKE_VERSION(MAJOR,MINOR,PATCH)       ((MAJOR*1000*1000) + (MINOR*1000) + PATCH)
 
 #define NW_PLATFORM_VERSION_1_0_1      NW_PLATFORM_MAKE_VERSION(1,0,1)
 #define NW_PLATFORM_VERSION_1_0_2      NW_PLATFORM_MAKE_VERSION(1,0,2)
 #define NW_PLATFORM_VERSION_1_0_3      NW_PLATFORM_MAKE_VERSION(1,0,3)
+#define NW_PLATFORM_VERSION_1_0_4      NW_PLATFORM_MAKE_VERSION(1,0,4)
 
-#define NW_PLATFORM_CURRENT_VERSION    NW_PLATFORM_VERSION_1_0_3
+#define NW_PLATFORM_CURRENT_VERSION    NW_PLATFORM_VERSION_1_0_4
 
 #endif /* __NW_PLATFORM__ */

@@ -1,12 +1,32 @@
 //
-//  NW OS VERSION
+//  NW PLATFORM
 //
-//  Created by Alexandr Kavalchuk on 16.03.15.
-//  Copyright (c) 2006-2015 Alexandr Kavalchuk (nWaves).
+//  Copyright (c) 2006-2018 Alexandr Kavalchuk (nWaves).
 //  All rights reserved.
+//
+//  This software is provided 'as-is', without any express or implied
+//  warranty. In no event will the authors be held liable for any damages
+//  arising from the use of this software. Permission is granted to anyone to
+//  use this software for any purpose, including commercial applications, and to
+//  alter it and redistribute it freely, subject to the following restrictions:
+//
+//  1. The origin of this software must not be misrepresented; you must not
+//     claim that you wrote the original software. If you use this software
+//     in a product, an acknowledgment in the product documentation would be
+//     appreciated but is not required.
+//  2. Altered source versions must be plainly marked as such, and must not be
+//     misrepresented as being the original software.
+//  3. This notice may not be removed or altered from any source
+//     distribution.
 //
 
 #include "nwplatform.h"
+
+#if __NW_PLATFORM_IMPLEMENTATION
+//#error Use only "nwplatform.h" and "nwplatform.c". Don't compile/include other files directly!
+
+#ifndef __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__
+#define __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__
 
 #if NW_SYSTEM_IOS
 #define _os_version_internal os_version_ios
@@ -31,7 +51,7 @@ EXTERN_C struct os_version_t os_version()
     }
     
     return os_version;
-}
+};
 
 #if NW_SYSTEM_IOS
 //-------------------- IOS ----------------------
@@ -51,12 +71,11 @@ EXTERN_C struct os_version_t os_version_ios()
     SEL currentDeviceSel = sel_registerName("currentDevice");
     
     IMP currentDeviceImp = GET_CLASS_METHOD_IMP(uiDevice, currentDeviceSel);
-    
-    CFTypeRef currentDevice = currentDeviceImp((id)uiDevice, currentDeviceSel);
+    CFTypeRef currentDevice = ((CFTypeRef(*)(id, SEL))currentDeviceImp)((id)uiDevice, currentDeviceSel);
     SEL systemVersionSel = sel_registerName("systemVersion");
     
     IMP systemVersionImp      =  GET_INSTANCE_METHOD_IMP(uiDevice, systemVersionSel);
-    CFStringRef systemVersion = (CFStringRef)systemVersionImp((id)currentDevice, systemVersionSel);
+    CFStringRef systemVersion = ((CFStringRef(*)(id, SEL))systemVersionImp)((id)currentDevice, systemVersionSel);
     
     const char* systemVersionStr = CFStringGetCStringPtr(systemVersion, kCFStringEncodingASCII);
     
@@ -67,7 +86,7 @@ EXTERN_C struct os_version_t os_version_ios()
         if (systemVersionStr == NULL)
         {
             SEL UTF8StringSel = sel_registerName("UTF8String");
-            systemVersionStr = (const char*)objc_msgSend((id)systemVersion, UTF8StringSel);
+            systemVersionStr = ((const char*(*)(id, SEL))objc_msgSend)((id)systemVersion, UTF8StringSel);
         }
     }
     
@@ -205,3 +224,7 @@ EXTERN_C struct OS_VERSION_VALUE os_version_empty()
     return result;
 }
 #endif
+
+#endif //#ifndef __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__
+
+#endif //#if __NW_PLATFORM_IMPLEMENTATION
