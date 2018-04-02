@@ -24,6 +24,6 @@
 
 #define __NW_PLATFORM_IMPLEMENTATION 1
 
-#include "nwosversion.c"
+#include "nwplatform_osversion.c"
 
 #undef __NW_PLATFORM_IMPLEMENTATION
