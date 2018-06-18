@@ -52,7 +52,7 @@ EXTERN_C struct os_version_t os_version()
     }
     
     return os_version;
-}
+};
 
 #if NW_SYSTEM_IOS
 //-------------------- IOS ----------------------
