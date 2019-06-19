@@ -22,9 +22,8 @@
 
 #include "nwplatform.h"
 
-#ifndef __NW_PLATFORM_IMPLEMENTATION
-#error Use only "nwplatform.h" and "nwplatform.c". Don't compile/include other files directly!
-#endif
+#if __NW_PLATFORM_IMPLEMENTATION
+//#error Use only "nwplatform.h" and "nwplatform.c". Don't compile/include other files directly!
 
 #ifndef __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__
 #define __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__
@@ -228,3 +227,5 @@ EXTERN_C struct OS_VERSION_VALUE os_version_empty()
 #endif
 
 #endif //#ifndef __NW_PLATFORM_OS_VERSION_IMPLEMENTATION__
+
+#endif //#if __NW_PLATFORM_IMPLEMENTATION
