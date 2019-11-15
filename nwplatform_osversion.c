@@ -71,12 +71,11 @@ EXTERN_C struct os_version_t os_version_ios()
     SEL currentDeviceSel = sel_registerName("currentDevice");
     
     IMP currentDeviceImp = GET_CLASS_METHOD_IMP(uiDevice, currentDeviceSel);
-    
-    CFTypeRef currentDevice = currentDeviceImp((id)uiDevice, currentDeviceSel);
+    CFTypeRef currentDevice = ((CFTypeRef(*)(id, SEL))currentDeviceImp)((id)uiDevice, currentDeviceSel);
     SEL systemVersionSel = sel_registerName("systemVersion");
     
     IMP systemVersionImp      =  GET_INSTANCE_METHOD_IMP(uiDevice, systemVersionSel);
-    CFStringRef systemVersion = (CFStringRef)systemVersionImp((id)currentDevice, systemVersionSel);
+    CFStringRef systemVersion = ((CFStringRef(*)(id, SEL))systemVersionImp)((id)currentDevice, systemVersionSel);
     
     const char* systemVersionStr = CFStringGetCStringPtr(systemVersion, kCFStringEncodingASCII);
     
@@ -87,7 +86,7 @@ EXTERN_C struct os_version_t os_version_ios()
         if (systemVersionStr == NULL)
         {
             SEL UTF8StringSel = sel_registerName("UTF8String");
-            systemVersionStr = (const char*)objc_msgSend((id)systemVersion, UTF8StringSel);
+            systemVersionStr = ((const char*(*)(id, SEL))objc_msgSend)((id)systemVersion, UTF8StringSel);
         }
     }
     
